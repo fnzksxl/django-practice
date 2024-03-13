@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 # 1. 프로젝트 시작 시에 python manage.py migrate
@@ -11,3 +13,8 @@ class PayPlan(models.Model):
     price = models.IntegerField()
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class UserDetail(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    pay_plan = models.ForeignKey(PayPlan, on_delete=models.DO_NOTHING)
